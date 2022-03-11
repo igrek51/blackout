@@ -90,6 +90,7 @@ class AppInitializer(
             val cResolver = activity.contentResolver
             val window = activity.window
 
+            Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, 0)
             // To handle the auto
             Settings.System.putInt(
                     cResolver,
@@ -100,11 +101,10 @@ class AppInitializer(
             val brightness = Settings.System.getInt(
                     cResolver, Settings.System.SCREEN_BRIGHTNESS
             )
+            Toast.makeText(activity, "Brightness: $brightness", Toast.LENGTH_SHORT).show()
 
             // Set the system brightness using the brightness variable value
-            Settings.System.putInt(
-                    cResolver, Settings.System.SCREEN_BRIGHTNESS, 0
-            )
+            Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, 0)
         } catch (e: Throwable) {
             Toast.makeText(activity, "Error: $e", Toast.LENGTH_LONG).show()
         }
@@ -115,7 +115,7 @@ class AppInitializer(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             retVal = Settings.System.canWrite(activity)
             if (retVal) {
-                Toast.makeText(activity, "System Settings Write allowed", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "System Settings Write allowed", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(activity, "System Settings Write not allowed", Toast.LENGTH_LONG).show()
                 val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)

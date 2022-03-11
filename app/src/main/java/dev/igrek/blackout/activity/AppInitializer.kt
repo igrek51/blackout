@@ -82,7 +82,7 @@ class AppInitializer(
             Toast.makeText(activity, "Error: $e", Toast.LENGTH_LONG).show()
         }
 
-        Handler().postDelayed(this::dimScreen, 3000)
+        Handler().postDelayed(this::dimScreen, 1000)
     }
 
     private fun dimScreen() {

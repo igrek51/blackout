@@ -90,7 +90,7 @@ class AppInitializer(
             val cResolver = activity.contentResolver
             val window = activity.window
 
-            Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, 0)
+            Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, 1)
             // To handle the auto
             Settings.System.putInt(
                     cResolver,
@@ -104,7 +104,13 @@ class AppInitializer(
             Toast.makeText(activity, "Brightness: $brightness", Toast.LENGTH_SHORT).show()
 
             // Set the system brightness using the brightness variable value
-            Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, 0)
+            Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, 1)
+
+            val intent = Intent(activity.baseContext, DummyBrightnessActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra("brightness value", brightness)
+            activity.application.startActivity(intent)
+
         } catch (e: Throwable) {
             Toast.makeText(activity, "Error: $e", Toast.LENGTH_LONG).show()
         }

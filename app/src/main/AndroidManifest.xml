@@ -35,6 +35,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.DummyBrightnessActivity"
+            android:taskAffinity="dev.igrek.blackout.Dummy"
+            android:excludeFromRecents="true"
+            android:theme="@style/EmptyActivity"></activity>
+
     </application>
 
 </manifest>
